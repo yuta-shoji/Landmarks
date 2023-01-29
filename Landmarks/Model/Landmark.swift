@@ -1,5 +1,6 @@
 import Foundation
 import CoreLocation
+import SwiftUI
 
 struct Landmark : Hashable, Codable, Identifiable {
     var id : Int
@@ -8,8 +9,19 @@ struct Landmark : Hashable, Codable, Identifiable {
     var state: String
     var description: String
     var isFavorite: Bool
+    var isFeatured: Bool
     
-    var imageName: String
+    var category: Category
+    enum Category: String, CaseIterable, Codable {
+        case lakes = "Lakes"
+        case rivers = "Rivers"
+        case mountains = "Mountains"
+    }
+    
+    private var imageName: String
+    var image: Image {
+        Image(imageName)
+    }
     
     private var coordinates: Coordinates
     var locationCoordinate: CLLocationCoordinate2D {

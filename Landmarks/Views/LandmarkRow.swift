@@ -5,7 +5,7 @@ struct LandmarkRow: View {
     
     var body: some View {
         HStack {
-            Image(landmark.imageName)
+            landmark.image
                 .resizable()
                 .frame(width: 50, height: 50)
             Text(landmark.name)
