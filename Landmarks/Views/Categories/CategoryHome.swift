@@ -5,13 +5,12 @@ struct CategoryHome: View {
     @State private var showingProfile = false
 
     var body: some View {
+        var featureCards = modelData.features.map { FeatureCard(landmark: $0) }
+        
         NavigationView {
             List {
-                modelData.features[0].image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 200)
-                    .clipped()
+                PageView(pages: featureCards)
+                    .aspectRatio(3 / 2, contentMode: .fit)
                     .listRowInsets(EdgeInsets())
 
                 ForEach(modelData.categories.keys.sorted(), id: \.self) { key in
